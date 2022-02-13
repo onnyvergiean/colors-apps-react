@@ -1,0 +1,16 @@
+import React, { Component } from "react";
+import "./ColorBox.css";
+export default class ColorBox extends Component {
+  render() {
+    return (
+      <div
+        className="ColorBox"
+        style={{ background: this.props.background }}
+        key={this.props.id}
+      >
+        <span>{this.props.id}</span>
+        <span>MORE</span>
+      </div>
+    );
+  }
+}
