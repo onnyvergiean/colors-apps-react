@@ -1,12 +1,14 @@
 import Palette from "./Palette";
 import seedColor from "./seedColor";
 import { generatePalette } from "./colorHelper";
+import { Routes, Route } from "react-router-dom";
 
 function App() {
   return (
-    <div>
-      <Palette palette={generatePalette(seedColor[4])} />
-    </div>
+    <Routes>
+      <Route path="/" />
+      <Route path="/palette/:id" />
+    </Routes>
   );
 }
 

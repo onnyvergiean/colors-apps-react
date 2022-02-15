@@ -15,7 +15,7 @@ export default class Palette extends Component {
     this.setState({ format: val });
   };
   render() {
-    const { colors } = this.props.palette;
+    const { colors, paletteName, emoji } = this.props.palette;
     const { level, format } = this.state;
     const colorBoxes = colors[level].map((color) => (
       <ColorBox background={color[format]} key={color.name} id={color.name} />
@@ -28,6 +28,10 @@ export default class Palette extends Component {
           handleChange={this.changeFormat}
         />
         <div className="Palette-colors">{colorBoxes}</div>
+        <div className="Palette-footer">
+          {paletteName}
+          <span className="emoji">{emoji}</span>
+        </div>
       </div>
     );
   }
