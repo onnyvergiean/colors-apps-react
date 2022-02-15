@@ -28,7 +28,12 @@ export default function Palette() {
   let palette = generatePalette(findPalette(id));
   const { colors, paletteName, emoji } = palette;
   const colorBoxes = colors[level].map((color) => (
-    <ColorBox background={color[format]} key={color.name} id={color.name} />
+    <ColorBox
+      background={color[format]}
+      key={color.name}
+      id={color.id}
+      moreUrl={`/palette/${id}/${color.id}`}
+    />
   ));
 
   return (
