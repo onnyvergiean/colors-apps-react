@@ -1,11 +1,14 @@
 import React, { useState } from "react";
+import { generatePalette } from "./colorHelper";
+import { useParams } from "react-router-dom";
+
 import ColorBox from "./ColorBox";
 import Navbar from "./Navbar";
 import seedColor from "./seedColor";
-import { generatePalette } from "./colorHelper";
+
 import "./Palette.css";
-import { useParams } from "react-router-dom";
-export default function Palette(props) {
+
+export default function Palette() {
   const [level, setLevel] = useState(500);
   const [format, setFormat] = useState("hex");
   const { id } = useParams();
@@ -17,7 +20,7 @@ export default function Palette(props) {
   };
 
   const findPalette = (id) => {
-    return seedColor.find(function (palette) {
+    return seedColor.find((palette) => {
       return palette.id === id;
     });
   };
