@@ -7,7 +7,7 @@ import seedColor from "./seedColor";
 const styles = {
   root: {
     backgroundColor: "blue",
-    height: "100%",
+    height: "100vh",
     display: "flex",
     alignItems: "flex-start",
     justifyContent: "center",
@@ -31,7 +31,11 @@ const styles = {
 
 function PaletteList(props) {
   const { classes } = props;
-  let palettes = seedColor.map((palette) => <MiniPalette {...palette} />);
+  let palettes = seedColor.map((palette) => (
+    <div key={palette.id}>
+      <MiniPalette {...palette} />
+    </div>
+  ));
 
   return (
     <div className={classes.root}>
