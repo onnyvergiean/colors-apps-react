@@ -12,11 +12,12 @@ export default function Palette() {
   const [level, setLevel] = useState(500);
   const [format, setFormat] = useState("hex");
   const { id } = useParams();
+
   const changeLevel = (level) => {
-    setLevel({ level });
+    setLevel(level);
   };
   const changeFormat = (val) => {
-    setFormat({ format: val });
+    setFormat(val);
   };
 
   const findPalette = (id) => {

@@ -1,5 +1,5 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
 import { withStyles } from "@material-ui/core/styles";
 
 import MiniPalette from "./MiniPalette";
@@ -33,7 +33,9 @@ function PaletteList(props) {
   const { classes } = props;
   let palettes = seedColor.map((palette) => (
     <div key={palette.id}>
-      <MiniPalette {...palette} />
+      <Link to={`palette/${palette.id}`} style={{ textDecoration: "none" }}>
+        <MiniPalette {...palette} />
+      </Link>
     </div>
   ));
 
