@@ -26,13 +26,17 @@ export default function Palette() {
     });
   };
   let palette = generatePalette(findPalette(id));
+
   const { colors, paletteName, emoji } = palette;
   const colorBoxes = colors[level].map((color) => (
     <ColorBox
       background={color[format]}
       key={color.name}
       id={color.id}
+      name={color.name}
       moreUrl={`/palette/${id}/${color.id}`}
+      palette={palette}
+      showLink={true}
     />
   ));
 
