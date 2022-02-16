@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
-import ColorBox from "./ColorBox";
 
 import { generatePalette } from "./colorHelper";
+import ColorBox from "./ColorBox";
 import seedColor from "./seedColor";
+import Navbar from "./Navbar";
+import PaletteFooter from "./PaletteFooter";
+
 export default function SingleColorPalette() {
+  const [format, setFormat] = useState("hex");
   const { id, colorId } = useParams();
   const findPalette = (id) => {
     return seedColor.find((palette) => {
@@ -12,6 +16,7 @@ export default function SingleColorPalette() {
     });
   };
   let palettes = generatePalette(findPalette(id));
+  const { paletteName, emoji } = palettes;
   const gatherShades = (palette, colorToFilterBy) => {
     let shades = [];
     let allColors = palette.colors;
@@ -22,11 +27,14 @@ export default function SingleColorPalette() {
     }
     return shades.slice(1);
   };
+  const changeFormat = (val) => {
+    setFormat(val);
+  };
   const _shades = gatherShades(palettes, colorId);
   const colorBoxes = _shades.map((color) => (
     <ColorBox
       name={color.name}
-      background={color.hex}
+      background={color[format]}
       showLink={false}
       key={color.name}
       id={color.id}
@@ -35,7 +43,9 @@ export default function SingleColorPalette() {
 
   return (
     <div className="Palette">
+      <Navbar handleChange={changeFormat} showingAllColors={false} />
       <div className="Palette-colors">{colorBoxes}</div>
+      <PaletteFooter paletteName={paletteName} emoji={emoji} />
     </div>
   );
 }

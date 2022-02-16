@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import ColorBox from "./ColorBox";
 import Navbar from "./Navbar";
 import seedColor from "./seedColor";
+import PaletteFooter from "./PaletteFooter";
 
 import "./Palette.css";
 
@@ -46,12 +47,10 @@ export default function Palette() {
         level={level}
         changeLevel={changeLevel}
         handleChange={changeFormat}
+        showingAllColors
       />
       <div className="Palette-colors">{colorBoxes}</div>
-      <div className="Palette-footer">
-        {paletteName}
-        <span className="emoji">{emoji}</span>
-      </div>
+      <PaletteFooter paletteName={paletteName} emoji={emoji} />
     </div>
   );
 }
