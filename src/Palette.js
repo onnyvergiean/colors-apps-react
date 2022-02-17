@@ -37,7 +37,7 @@ export default function Palette() {
       name={color.name}
       moreUrl={`/palette/${id}/${color.id}`}
       palette={palette}
-      showLink={true}
+      showingFullPalette
     />
   ));
 

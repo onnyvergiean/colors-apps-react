@@ -36,7 +36,7 @@ export default function SingleColorPalette() {
     <ColorBox
       name={color.name}
       background={color[format]}
-      showLink={false}
+      showingFullPalette={false}
       key={color.name}
       id={color.id}
     />
