@@ -7,6 +7,9 @@
   cursor: pointer;
   margin-bottom: -4px;
 }
+::-webkit-scrollbar {
+  display: none;
+}
 .SingleColorPalette .ColorBox {
   height: 50%;
 }
@@ -67,7 +70,12 @@
   line-height: 30px;
   text-transform: uppercase;
 }
-
+.light-text {
+  color: white;
+}
+.ColorBox .dark-text {
+  color: rgba(0, 0, 0, 0.8);
+}
 .copy-overlay {
   opacity: 0;
   z-index: 0;
