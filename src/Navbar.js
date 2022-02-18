@@ -6,13 +6,15 @@ import Snackbar from "@mui/material/Snackbar";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import { Link } from "react-router-dom";
+import { withStyles } from "@material-ui/core/styles";
 
 import "rc-slider/assets/index.css";
-import "./Navbar.css";
+import styles from "./Styles/NavbarStyles";
 
-export default function Navbar(props) {
+function Navbar(props) {
   const [format, setFormat] = useState("hex");
   const [open, setOpen] = useState(false);
+  const { level, changeLevel, showingAllColors, classes } = props;
 
   const handleFormatChange = (evt) => {
     setFormat(evt.target.value);
@@ -22,16 +24,15 @@ export default function Navbar(props) {
   const closeSnackbar = () => {
     setOpen(false);
   };
-  const { level, changeLevel, showingAllColors } = props;
   return (
-    <div className="Navbar">
-      <div className="logo">
+    <div className={classes.Navbar}>
+      <div className={classes.logo}>
         <Link to="/">reactcolorpicker</Link>
       </div>
       {showingAllColors && (
-        <div className="slider-container">
+        <div>
           <span>level: {level}</span>
-          <div className="slider">
+          <div className={classes.slider}>
             <Slider
               defaultValue={level}
               min={100}
@@ -42,7 +43,7 @@ export default function Navbar(props) {
           </div>
         </div>
       )}
-      <div className="select-container">
+      <div className={classes.SelectContainer}>
         <Select value={format} onChange={handleFormatChange}>
           <MenuItem value="hex">HEX - #1234F</MenuItem>
           <MenuItem value="rgb">RGB - rgb(255,255,255)</MenuItem>
@@ -67,3 +68,5 @@ export default function Navbar(props) {
     </div>
   );
 }
+
+export default withStyles(styles)(Navbar);
