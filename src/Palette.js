@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { generatePalette } from "./colorHelper";
 import { useParams } from "react-router-dom";
+import { withStyles } from "@material-ui/core/styles";
 
 import ColorBox from "./ColorBox";
 import Navbar from "./Navbar";
@@ -9,7 +10,17 @@ import PaletteFooter from "./PaletteFooter";
 
 import "./Palette.css";
 
-export default function Palette() {
+const styles = {
+  Palette: {
+    height: "100vh",
+    display: "flex",
+    flexDirection: "column",
+  },
+  colors: {
+    height: " 90%",
+  },
+};
+function Palette(props) {
   const [level, setLevel] = useState(500);
   const [format, setFormat] = useState("hex");
   const { id } = useParams();
@@ -27,7 +38,7 @@ export default function Palette() {
     });
   };
   let palette = generatePalette(findPalette(id));
-
+  const { classes } = props;
   const { colors, paletteName, emoji } = palette;
   const colorBoxes = colors[level].map((color) => (
     <ColorBox
@@ -42,15 +53,17 @@ export default function Palette() {
   ));
 
   return (
-    <div className="Palette">
+    <div className={classes.Palette}>
       <Navbar
         level={level}
         changeLevel={changeLevel}
         handleChange={changeFormat}
         showingAllColors
       />
-      <div className="Palette-colors">{colorBoxes}</div>
+      <div className={classes.colors}>{colorBoxes}</div>
       <PaletteFooter paletteName={paletteName} emoji={emoji} />
     </div>
   );
 }
+
+export default withStyles(styles)(Palette);

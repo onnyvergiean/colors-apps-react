@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { withStyles } from "@material-ui/core/styles";
 
 import { generatePalette } from "./colorHelper";
 import ColorBox from "./ColorBox";
@@ -8,9 +9,51 @@ import seedColor from "./seedColor";
 import Navbar from "./Navbar";
 import PaletteFooter from "./PaletteFooter";
 
-export default function SingleColorPalette() {
+const styles = {
+  Palette: {
+    height: "100vh",
+    display: "flex",
+    flexDirection: "column",
+  },
+  colors: {
+    height: "90%",
+  },
+  goBack: {
+    width: "20%",
+    height: "50%",
+    margin: "0 auto",
+    display: "inline-block",
+    position: "relative",
+    cursor: "pointer",
+    marginBottom: "-4px",
+    backgroundColor: "black",
+    opacity: 1,
+    "& a": {
+      color: "white",
+      width: "100px",
+      height: "30px",
+      position: "absolute",
+      display: "inline-block",
+      top: "50%",
+      left: "50%",
+      marginLeft: "-50px",
+      marginTop: "-15px",
+      textAlign: "center",
+      outline: "none",
+      background: "rgba(255, 255, 255, 0.3)",
+      fontSize: "1rem",
+      lineHeight: "30px",
+      border: "none",
+      textTransform: "uppercase",
+      cursor: "pointer",
+      textDecoration: "none",
+    },
+  },
+};
+function SingleColorPalette(props) {
   const [format, setFormat] = useState("hex");
   const { id, colorId } = useParams();
+  const { classes } = props;
   const findPalette = (id) => {
     return seedColor.find((palette) => {
       return palette.id === id;
@@ -43,16 +86,12 @@ export default function SingleColorPalette() {
   ));
 
   return (
-    <div className="SingleColorPalette Palette">
+    <div className={classes.Palette}>
       <Navbar handleChange={changeFormat} showingAllColors={false} />
-      <div className="Palette-colors">
+      <div className={classes.colors}>
         {colorBoxes}
-        <div className="go-back ColorBox">
-          <Link
-            to={`/palette/${id}/`}
-            className="back-button"
-            style={{ textDecoration: "none" }}
-          >
+        <div className={classes.goBack}>
+          <Link to={`/palette/${id}/`} style={{ textDecoration: "none" }}>
             GO BACK
           </Link>
         </div>
@@ -61,3 +100,5 @@ export default function SingleColorPalette() {
     </div>
   );
 }
+
+export default withStyles(styles)(SingleColorPalette);

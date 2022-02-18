@@ -5,7 +5,7 @@ import chroma from "chroma-js";
 import { withStyles } from "@material-ui/core/styles";
 
 import "./ColorBox.css";
-const style = {
+const styles = {
   colorBox: {
     width: "20%",
     height: (props) => (props.showingFullPalette ? "25%" : "50%"),
@@ -176,4 +176,4 @@ class ColorBox extends Component {
   }
 }
 
-export default withStyles(style)(ColorBox);
+export default withStyles(styles)(ColorBox);
