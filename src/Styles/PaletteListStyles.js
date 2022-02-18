@@ -13,7 +13,17 @@ export default {
     flexDirection: "column",
     flexWrap: "wrap",
   },
-  nav: { display: "flex", width: "100%", justifyContent: "space-between" },
+  nav: {
+    display: "flex",
+    width: "100%",
+    justifyContent: "space-between",
+    alignItems: "center",
+    color: "white",
+    "& a": {
+      color: "white",
+      textDecoration: "none",
+    },
+  },
   palette: {
     boxSizing: "border-box",
     width: "100%",
