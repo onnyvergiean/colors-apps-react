@@ -3,23 +3,12 @@ import { generatePalette } from "./colorHelper";
 import { useParams } from "react-router-dom";
 import { withStyles } from "@material-ui/core/styles";
 
+import styles from "./Styles/PaletteStyles";
 import ColorBox from "./ColorBox";
 import Navbar from "./Navbar";
 import seedColor from "./seedColor";
 import PaletteFooter from "./PaletteFooter";
 
-import "./Palette.css";
-
-const styles = {
-  Palette: {
-    height: "100vh",
-    display: "flex",
-    flexDirection: "column",
-  },
-  colors: {
-    height: " 90%",
-  },
-};
 function Palette(props) {
   const [level, setLevel] = useState(500);
   const [format, setFormat] = useState("hex");

@@ -3,53 +3,13 @@ import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { withStyles } from "@material-ui/core/styles";
 
+import styles from "./Styles/PaletteStyles";
 import { generatePalette } from "./colorHelper";
 import ColorBox from "./ColorBox";
 import seedColor from "./seedColor";
 import Navbar from "./Navbar";
 import PaletteFooter from "./PaletteFooter";
 
-const styles = {
-  Palette: {
-    height: "100vh",
-    display: "flex",
-    flexDirection: "column",
-  },
-  colors: {
-    height: "90%",
-  },
-  goBack: {
-    width: "20%",
-    height: "50%",
-    margin: "0 auto",
-    display: "inline-block",
-    position: "relative",
-    cursor: "pointer",
-    marginBottom: "-4px",
-    backgroundColor: "black",
-    opacity: 1,
-    "& a": {
-      color: "white",
-      width: "100px",
-      height: "30px",
-      position: "absolute",
-      display: "inline-block",
-      top: "50%",
-      left: "50%",
-      marginLeft: "-50px",
-      marginTop: "-15px",
-      textAlign: "center",
-      outline: "none",
-      background: "rgba(255, 255, 255, 0.3)",
-      fontSize: "1rem",
-      lineHeight: "30px",
-      border: "none",
-      textTransform: "uppercase",
-      cursor: "pointer",
-      textDecoration: "none",
-    },
-  },
-};
 function SingleColorPalette(props) {
   const [format, setFormat] = useState("hex");
   const { id, colorId } = useParams();
