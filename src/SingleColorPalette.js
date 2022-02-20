@@ -6,21 +6,21 @@ import { withStyles } from "@material-ui/core/styles";
 import styles from "./Styles/PaletteStyles";
 import { generatePalette } from "./colorHelper";
 import ColorBox from "./ColorBox";
-import seedColor from "./seedColor";
+
 import Navbar from "./Navbar";
 import PaletteFooter from "./PaletteFooter";
 
 function SingleColorPalette(props) {
   const [format, setFormat] = useState("hex");
   const { id, colorId } = useParams();
-  const { classes } = props;
+  const { classes, palettes } = props;
   const findPalette = (id) => {
-    return seedColor.find((palette) => {
+    return palettes.find((palette) => {
       return palette.id === id;
     });
   };
-  let palettes = generatePalette(findPalette(id));
-  const { paletteName, emoji } = palettes;
+  let palette = generatePalette(findPalette(id));
+  const { paletteName, emoji } = palette;
   const gatherShades = (palette, colorToFilterBy) => {
     let shades = [];
     let allColors = palette.colors;
@@ -34,7 +34,7 @@ function SingleColorPalette(props) {
   const changeFormat = (val) => {
     setFormat(val);
   };
-  const _shades = gatherShades(palettes, colorId);
+  const _shades = gatherShades(palette, colorId);
   const colorBoxes = _shades.map((color) => (
     <ColorBox
       name={color.name}

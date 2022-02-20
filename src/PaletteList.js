@@ -4,11 +4,10 @@ import { withStyles } from "@material-ui/core/styles";
 
 import styles from "./Styles/PaletteListStyles";
 import MiniPalette from "./MiniPalette";
-import seedColor from "./seedColor";
 
 function PaletteList(props) {
-  const { classes } = props;
-  let palettes = seedColor.map((palette) => (
+  const { classes, palettes } = props;
+  let listPalette = palettes.map((palette) => (
     <div key={palette.id}>
       <Link to={`palette/${palette.id}`} style={{ textDecoration: "none" }}>
         <MiniPalette {...palette} />
@@ -23,7 +22,7 @@ function PaletteList(props) {
           <h1>React Colors</h1>
           <Link to="/palette/new">Create New Palette</Link>
         </nav>
-        <div className={classes.palette}>{palettes}</div>
+        <div className={classes.palette}>{listPalette}</div>
       </div>
     </div>
   );

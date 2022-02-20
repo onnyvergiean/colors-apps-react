@@ -6,7 +6,7 @@ import { withStyles } from "@material-ui/core/styles";
 import styles from "./Styles/PaletteStyles";
 import ColorBox from "./ColorBox";
 import Navbar from "./Navbar";
-import seedColor from "./seedColor";
+
 import PaletteFooter from "./PaletteFooter";
 
 function Palette(props) {
@@ -20,14 +20,14 @@ function Palette(props) {
   const changeFormat = (val) => {
     setFormat(val);
   };
-
+  const { classes, palettes } = props;
   const findPalette = (id) => {
-    return seedColor.find((palette) => {
+    return palettes.find((palette) => {
       return palette.id === id;
     });
   };
   let palette = generatePalette(findPalette(id));
-  const { classes } = props;
+
   const { colors, paletteName, emoji } = palette;
   const colorBoxes = colors[level].map((color) => (
     <ColorBox
