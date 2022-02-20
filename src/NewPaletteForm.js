@@ -112,6 +112,9 @@ export default function NewPaletteForm(props) {
     props.savePalette(newPalette);
     navigate("/");
   };
+  const removeColor = (colorName) => {
+    setColors(colors.filter((color) => color.name !== colorName));
+  };
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
@@ -203,7 +206,12 @@ export default function NewPaletteForm(props) {
         <DrawerHeader />
         <div style={{ height: "calc(100vh - 64px)" }}>
           {colors.map((color) => (
-            <DraggableColorBox color={color.color} name={color.name} />
+            <DraggableColorBox
+              color={color.color}
+              key={color.name}
+              name={color.name}
+              handleClick={() => removeColor(color.name)}
+            />
           ))}
         </div>
       </Main>
