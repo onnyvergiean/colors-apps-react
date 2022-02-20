@@ -14,7 +14,8 @@ import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import { ChromePicker } from "react-color";
 import Button from "@mui/material/Button";
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
-import DraggableColorBox from "./DraggableColorBox";
+import DraggableColorList from "./DraggableColorList";
+import { arrayMoveImmutable } from "array-move";
 
 const drawerWidth = 400;
 
@@ -81,7 +82,7 @@ export default function NewPaletteForm(props) {
         ({ paletteName }) => paletteName.toLowerCase() !== value.toLowerCase()
       )
     );
-  }, [colors, currentColor]);
+  }, [colors, currentColor, props.palettes]);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -114,6 +115,11 @@ export default function NewPaletteForm(props) {
   };
   const removeColor = (colorName) => {
     setColors(colors.filter((color) => color.name !== colorName));
+  };
+
+  const onSortEnd = ({ oldIndex, newIndex }) => {
+    const newColors = arrayMoveImmutable(colors, oldIndex, newIndex);
+    setColors(newColors);
   };
   return (
     <Box sx={{ display: "flex" }}>
@@ -204,16 +210,12 @@ export default function NewPaletteForm(props) {
       </Drawer>
       <Main open={open}>
         <DrawerHeader />
-        <div style={{ height: "calc(100vh - 64px)" }}>
-          {colors.map((color) => (
-            <DraggableColorBox
-              color={color.color}
-              key={color.name}
-              name={color.name}
-              handleClick={() => removeColor(color.name)}
-            />
-          ))}
-        </div>
+        <DraggableColorList
+          colors={colors}
+          removeColor={removeColor}
+          axis="xy"
+          onSortEnd={onSortEnd}
+        />
       </Main>
     </Box>
   );
