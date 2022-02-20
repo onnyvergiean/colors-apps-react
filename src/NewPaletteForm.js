@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { styled } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
 import Box from "@mui/material/Box";
@@ -66,10 +66,13 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 export default function NewPaletteForm(props) {
   const [open, setOpen] = useState(false);
   const [currentColor, setCurrentColor] = useState("teal");
-  const [colors, setColors] = useState([]);
+  const [colors, setColors] = useState(props.palettes[0].colors);
   const [newColorName, setNewColorName] = useState("");
   const [newPaletteName, setNewPaletteName] = useState("");
   const navigate = useNavigate();
+  const formRef = useRef(null);
+  const { maxColors = 20 } = props;
+  const paletteIsFull = colors.length >= maxColors;
   useEffect(() => {
     ValidatorForm.addValidationRule("isColorNameUnique", (value) =>
       colors.every(({ name }) => name.toLowerCase() !== value.toLowerCase())
@@ -103,6 +106,15 @@ export default function NewPaletteForm(props) {
     setNewColorName("");
   };
 
+  const clearColors = () => {
+    setColors([]);
+  };
+  const addRandomColor = () => {
+    const allColors = props.palettes.map(({ colors }) => colors).flat();
+    let rand = Math.floor(Math.random() * allColors.length);
+    const randomColor = allColors[rand];
+    setColors([...colors, randomColor]);
+  };
   const handleSubmit = () => {
     let newName = newPaletteName;
     const newPalette = {
@@ -176,10 +188,15 @@ export default function NewPaletteForm(props) {
         <Divider />
         <Typography variant="h4">Design Your Palette</Typography>
         <div>
-          <Button variant="contained" color="secondary">
+          <Button variant="contained" color="secondary" onClick={clearColors}>
             Clear Palette
           </Button>
-          <Button variant="contained" color="primary">
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={addRandomColor}
+            disabled={paletteIsFull}
+          >
             Random Color
           </Button>
         </div>
@@ -187,7 +204,7 @@ export default function NewPaletteForm(props) {
           color={currentColor}
           onChangeComplete={handleChangeCompleted}
         />
-        <ValidatorForm onSubmit={addNewColor}>
+        <ValidatorForm onSubmit={addNewColor} ref={formRef}>
           <TextValidator
             value={newColorName}
             onChange={(evt) => setNewColorName(evt.target.value)}
@@ -202,9 +219,10 @@ export default function NewPaletteForm(props) {
             variant="contained"
             color="primary"
             type="submit"
-            style={{ backgroundColor: currentColor }}
+            style={{ backgroundColor: paletteIsFull ? "grey" : currentColor }}
+            disabled={paletteIsFull}
           >
-            ADD COLOR
+            {paletteIsFull ? "Palette is full" : "Add Color"}
           </Button>
         </ValidatorForm>
       </Drawer>
