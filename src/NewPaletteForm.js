@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { styled } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
 import Box from "@mui/material/Box";
@@ -7,11 +7,10 @@ import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import { ChromePicker } from "react-color";
 import Button from "@mui/material/Button";
-import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 import DraggableColorList from "./DraggableColorList";
 import { arrayMoveImmutable } from "array-move";
+import { withStyles } from "@material-ui/core/styles";
 
 import PaletteFormNav from "./PaletteFormNav";
 import ColorPickerForm from "./ColorPickerForm";
@@ -31,7 +30,6 @@ const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
         easing: theme.transitions.easing.easeOut,
         duration: theme.transitions.duration.enteringScreen,
       }),
-      marginLeft: 0,
     }),
   })
 );
@@ -43,13 +41,29 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   ...theme.mixins.toolbar,
   justifyContent: "flex-end",
 }));
-
-export default function NewPaletteForm(props) {
+const styles = {
+  container: {
+    width: "90%",
+    height: "100%",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    margin: "1rem",
+  },
+  buttons: {
+    width: "100%",
+  },
+  button: {
+    width: "50%",
+  },
+};
+function NewPaletteForm(props) {
   const [open, setOpen] = useState(false);
   const [colors, setColors] = useState(props.palettes[0].colors);
   const navigate = useNavigate();
 
-  const { maxColors = 20 } = props;
+  const { maxColors = 20, classes } = props;
   const paletteIsFull = colors.length >= maxColors;
 
   const handleDrawerOpen = () => {
@@ -106,6 +120,8 @@ export default function NewPaletteForm(props) {
             width: drawerWidth,
             boxSizing: "border-box",
           },
+          display: "flex",
+          alignItems: "center",
         }}
         variant="persistent"
         anchor="left"
@@ -117,25 +133,35 @@ export default function NewPaletteForm(props) {
           </IconButton>
         </DrawerHeader>
         <Divider />
-        <Typography variant="h4">Design Your Palette</Typography>
-        <div>
-          <Button variant="contained" color="secondary" onClick={clearColors}>
-            Clear Palette
-          </Button>
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={addRandomColor}
-            disabled={paletteIsFull}
-          >
-            Random Color
-          </Button>
+        <div className={classes.container}>
+          <Typography variant="h4" gutterBottom>
+            Design Your Palette
+          </Typography>
+          <div className={classes.buttons}>
+            <Button
+              variant="contained"
+              color="secondary"
+              onClick={clearColors}
+              className={classes.button}
+            >
+              Clear Palette
+            </Button>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={addRandomColor}
+              disabled={paletteIsFull}
+              className={classes.button}
+            >
+              Random Color
+            </Button>
+          </div>
+          <ColorPickerForm
+            paletteIsFull={paletteIsFull}
+            addNewColor={addNewColor}
+            colors={colors}
+          />
         </div>
-        <ColorPickerForm
-          paletteIsFull={paletteIsFull}
-          addNewColor={addNewColor}
-          colors={colors}
-        />
       </Drawer>
       <Main open={open}>
         <DrawerHeader />
@@ -149,3 +175,5 @@ export default function NewPaletteForm(props) {
     </Box>
   );
 }
+
+export default withStyles(styles)(NewPaletteForm);
