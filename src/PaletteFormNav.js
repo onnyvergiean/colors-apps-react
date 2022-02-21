@@ -1,17 +1,14 @@
 import React, { useState } from "react";
-<<<<<<< HEAD
-
-=======
->>>>>>> d5d83155d7ac14bd04c8467b15f98440081e6f69
 import { Link } from "react-router-dom";
 import CssBaseline from "@mui/material/CssBaseline";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
-import MenuIcon from "@mui/icons-material/Menu";
 import Button from "@mui/material/Button";
 import { withStyles } from "@material-ui/core/styles";
 import PaletteMetaForm from "./PaletteMetaForm";
+import AddToPhotosIcon from "@mui/icons-material/AddToPhotos";
+
 import { styles, AppBar } from "./Styles/PaletteFormNavStyles";
 
 function PaletteFormNav(props) {
@@ -36,7 +33,7 @@ function PaletteFormNav(props) {
             edge="start"
             sx={{ mr: 2, ...(open && { display: "none" }) }}
           >
-            <MenuIcon />
+            <AddToPhotosIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div">
             Create a Palette
