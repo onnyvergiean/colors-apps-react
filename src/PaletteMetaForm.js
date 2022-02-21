@@ -6,11 +6,13 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
+import "emoji-mart/css/emoji-mart.css";
+import { Picker } from "emoji-mart";
 
 export default function PaletteMetaForm(props) {
   const [open, setOpen] = React.useState(true);
   const [newPaletteName, setNewPaletteName] = useState("");
-  const { palettes, handleSubmit } = props;
+  const { palettes, handleSubmit, hideForm } = props;
   useEffect(() => {
     ValidatorForm.addValidationRule("isPaletteNameUnique", (value) =>
       palettes.every(
@@ -18,22 +20,16 @@ export default function PaletteMetaForm(props) {
       )
     );
   }, [palettes]);
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
 
   return (
-    <Dialog open={open} onClose={handleClose}>
+    <Dialog open={open} onClose={hideForm}>
       <DialogTitle>Choose a Palette Name</DialogTitle>
       <ValidatorForm onSubmit={() => handleSubmit(newPaletteName)}>
         <DialogContent>
           <DialogContentText>
             Please Enter a name for your new Palette. Make sure it's unique.
           </DialogContentText>
+          <Picker />
           <TextValidator
             label="Palette Name"
             value={newPaletteName}
@@ -47,13 +43,13 @@ export default function PaletteMetaForm(props) {
             ]}
           />
         </DialogContent>
+        <DialogActions>
+          <Button onClick={hideForm}>Cancel</Button>
+          <Button variant="contained" type="submit" color="primary">
+            Save Palette
+          </Button>
+        </DialogActions>
       </ValidatorForm>
-      <DialogActions>
-        <Button onClick={handleClose}>Cancel</Button>
-        <Button variant="contained" type="submit" color="primary">
-          Save Palette
-        </Button>
-      </DialogActions>
     </Dialog>
   );
 }
