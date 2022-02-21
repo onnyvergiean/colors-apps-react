@@ -31,6 +31,7 @@ const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
         easing: theme.transitions.easing.easeOut,
         duration: theme.transitions.duration.enteringScreen,
       }),
+      marginLeft: 0,
     }),
   })
 );
@@ -165,7 +166,7 @@ function NewPaletteForm(props) {
         </div>
       </Drawer>
       <Main open={open}>
-        <DrawerHeader style={{ marginBottom: "2.7rem" }} />
+        <DrawerHeader />
         <DraggableColorList
           colors={colors}
           removeColor={removeColor}

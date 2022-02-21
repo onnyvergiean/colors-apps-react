@@ -13,7 +13,7 @@ const styles = {
     width: "100% ",
     padding: "1rem",
     marginTop: "1rem",
-    fontSize: "2rem !important",
+    fontSize: "2px !important",
   },
   colorNameInput: {
     width: "100%",
