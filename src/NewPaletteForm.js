@@ -14,6 +14,7 @@ import { withStyles } from "@material-ui/core/styles";
 
 import PaletteFormNav from "./PaletteFormNav";
 import ColorPickerForm from "./ColorPickerForm";
+
 const drawerWidth = 400;
 
 const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
@@ -164,7 +165,7 @@ function NewPaletteForm(props) {
         </div>
       </Drawer>
       <Main open={open}>
-        <DrawerHeader />
+        <DrawerHeader style={{ marginBottom: "2.7rem" }} />
         <DraggableColorList
           colors={colors}
           removeColor={removeColor}
