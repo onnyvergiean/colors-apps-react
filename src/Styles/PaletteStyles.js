@@ -47,7 +47,7 @@ const styles = {
       height: "20%",
     },
     [sizes.down("xs")]: {
-      width: "10%",
+      width: "100%",
       height: "10%",
     },
   },
