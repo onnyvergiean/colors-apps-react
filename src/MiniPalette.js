@@ -4,7 +4,9 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import styles from "./Styles/MiniPaletteStyles";
 
 function MiniPalette(props) {
-  const { classes, paletteName, emoji, colors } = props;
+  const { classes, paletteName, emoji, colors, handleClick, handleDelete, id } =
+    props;
+
   const miniColors = colors.map((color) => (
     <div
       className={classes.miniColor}
@@ -12,14 +14,18 @@ function MiniPalette(props) {
       key={color.name}
     ></div>
   ));
+
+  const deletePalette = (e) => {
+    e.stopPropagation();
+    handleDelete(id);
+  };
   return (
-    <div className={classes.root}>
-      <div className={classes.delete}>
-        <DeleteIcon
-          className={classes.deleteIcon}
-          style={{ transition: "all 0.3s ease-in-out" }}
-        />
-      </div>
+    <div className={classes.root} onClick={handleClick}>
+      <DeleteIcon
+        className={classes.deleteIcon}
+        style={{ transition: "all 0.3s ease-in-out" }}
+        onClick={deletePalette}
+      />
       <div className={classes.colors}>{miniColors}</div>
       <h5 className={classes.title}>
         {paletteName} <span className={classes.emoji}>{emoji}</span>

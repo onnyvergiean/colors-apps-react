@@ -12,6 +12,9 @@ function App() {
   const savePalette = (newPalette) => {
     setPalettes([...palettes, newPalette]);
   };
+  const deletePalette = (id) => {
+    setPalettes(palettes.filter((palette) => palette.id !== id));
+  };
   const syncLocalStorage = () => {
     window.localStorage.setItem("palettes", JSON.stringify(palettes));
   };
@@ -19,7 +22,12 @@ function App() {
 
   return (
     <Routes>
-      <Route path="/" element={<PaletteList palettes={palettes} />} />
+      <Route
+        path="/"
+        element={
+          <PaletteList palettes={palettes} deletePalette={deletePalette} />
+        }
+      />
       <Route path="/palette/:id" element={<Palette palettes={palettes} />} />
       <Route
         path="/palette/:id/:colorId"

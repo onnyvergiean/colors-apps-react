@@ -1,17 +1,25 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { withStyles } from "@material-ui/core/styles";
 
 import styles from "./Styles/PaletteListStyles";
 import MiniPalette from "./MiniPalette";
 
 function PaletteList(props) {
-  const { classes, palettes } = props;
+  const { classes, palettes, deletePalette } = props;
+  let navigate = useNavigate();
+  const goToPalette = (id) => {
+    navigate(`/palette/${id}`);
+  };
+
   let listPalette = palettes.map((palette) => (
     <div key={palette.id}>
-      <Link to={`palette/${palette.id}`} style={{ textDecoration: "none" }}>
-        <MiniPalette {...palette} />
-      </Link>
+      <MiniPalette
+        {...palette}
+        id={palette.id}
+        handleClick={() => goToPalette(palette.id)}
+        handleDelete={deletePalette}
+      />
     </div>
   ));
 
