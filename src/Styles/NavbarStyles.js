@@ -44,7 +44,7 @@ const styles = {
         marginTop: "-2px",
         marginLeft: "4px",
       },
-    [sizes.down("xs")]: {
+    [sizes.down("sm")]: {
       width: "150px",
     },
   },

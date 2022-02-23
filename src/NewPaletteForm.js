@@ -13,6 +13,7 @@ import { withStyles } from "@material-ui/core/styles";
 
 import PaletteFormNav from "./PaletteFormNav";
 import ColorPickerForm from "./ColorPickerForm";
+import seedColor from "./seedColor";
 import {
   styles,
   Main,
@@ -22,7 +23,7 @@ import {
 
 function NewPaletteForm(props) {
   const [open, setOpen] = useState(false);
-  const [colors, setColors] = useState(props.palettes[0].colors);
+  const [colors, setColors] = useState(seedColor[0].colors);
   const navigate = useNavigate();
 
   const { maxColors = 20, classes } = props;

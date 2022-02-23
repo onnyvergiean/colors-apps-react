@@ -37,7 +37,11 @@ function ColorPickerForm(props) {
         onChangeComplete={handleChangeCompleted}
         className={classes.picker}
       />
-      <ValidatorForm onSubmit={handleSubmit} style={{ width: "100%" }}>
+      <ValidatorForm
+        onSubmit={handleSubmit}
+        style={{ width: "100%" }}
+        instantValidate={false}
+      >
         <TextValidator
           value={newColorName}
           placeholder="Color Name"
