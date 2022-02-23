@@ -10,11 +10,11 @@ const styles = {
     "&:hover svg": { opacity: 1 },
   },
   colors: {
-    backgroundColor: "#dae1e4 !important",
-    height: "150px !important",
-    width: "100% !important",
-    borderRadius: "5px !important",
-    overflow: "hidden !important",
+    backgroundColor: "#dae1e4",
+    height: "150px",
+    width: "100%",
+    borderRadius: "5px",
+    overflow: "hidden",
   },
   title: {
     display: "flex",
