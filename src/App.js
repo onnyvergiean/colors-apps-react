@@ -39,6 +39,12 @@ function App() {
           <NewPaletteForm savePalette={savePalette} palettes={palettes} />
         }
       />
+      <Route
+        path="*"
+        element={
+          <PaletteList palettes={palettes} deletePalette={deletePalette} />
+        }
+      />
     </Routes>
   );
 }
