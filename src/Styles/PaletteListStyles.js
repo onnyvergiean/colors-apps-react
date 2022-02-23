@@ -48,9 +48,10 @@ const styles = {
     width: "100%",
     display: "grid",
     gridTemplateColumns: "repeat(3,30%)",
-    gridGap: "2.5rem",
+    gridGap: "3rem",
     [sizes.down("md")]: {
       gridTemplateColumns: "repeat(2,50%)",
+      gridGap: "2rem",
     },
     [sizes.down("xs")]: {
       gridTemplateColumns: "repeat(1,100%)",

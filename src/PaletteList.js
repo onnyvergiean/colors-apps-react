@@ -51,7 +51,7 @@ function PaletteList(props) {
               <MiniPalette
                 {...palette}
                 id={palette.id}
-                handleClick={() => goToPalette(palette.id)}
+                handleClick={goToPalette}
                 openDialog={openDialog}
               />
             </CSSTransition>

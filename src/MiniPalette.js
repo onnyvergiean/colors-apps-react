@@ -20,7 +20,7 @@ function MiniPalette(props) {
     openDialog(id);
   };
   return (
-    <div className={classes.root} onClick={handleClick}>
+    <div className={classes.root} onClick={() => handleClick(id)}>
       <DeleteIcon
         className={classes.deleteIcon}
         style={{ transition: "all 0.3s ease-in-out" }}
