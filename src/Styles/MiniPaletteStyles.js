@@ -28,12 +28,12 @@ const styles = {
   },
   emoji: { marginLeft: "0.5rem", fontSize: "1.5rem" },
   miniColor: {
-    height: "25% !important",
-    width: "20% !important",
-    display: "inline-block !important",
-    margin: "0 auto !important",
-    position: "relative !important",
-    marginBottom: "-4px !important",
+    height: "25%",
+    width: "20%",
+    display: "inline-block",
+    margin: "0 auto",
+    position: "relative",
+    marginBottom: "-4px",
   },
   deleteIcon: {
     color: "white",
