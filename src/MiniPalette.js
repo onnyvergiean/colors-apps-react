@@ -12,7 +12,7 @@ function MiniPalette(props) {
       className={classes.miniColor}
       style={{ background: color.color }}
       key={color.name}
-    ></div>
+    />
   ));
 
   const deletePalette = (e) => {
