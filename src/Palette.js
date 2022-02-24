@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { generatePalette } from "./colorHelper";
 import { useParams } from "react-router-dom";
-import { withStyles } from "@material-ui/core/styles";
+import { withStyles } from "@mui/styles";
 
 import styles from "./Styles/PaletteStyles";
 import ColorBox from "./ColorBox";

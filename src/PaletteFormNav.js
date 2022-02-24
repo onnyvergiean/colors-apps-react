@@ -5,7 +5,7 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import Button from "@mui/material/Button";
-import { withStyles } from "@material-ui/core/styles";
+import { withStyles } from "@mui/styles";
 import PaletteMetaForm from "./PaletteMetaForm";
 import AddToPhotosIcon from "@mui/icons-material/AddToPhotos";
 
